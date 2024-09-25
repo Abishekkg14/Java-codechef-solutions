@@ -1,0 +1,54 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Read the number of test cases
+        int T = scanner.nextInt();
+
+        while (T-- > 0) {
+            solve(scanner);
+        }
+
+        scanner.close();
+    }
+
+    private static void solve(Scanner scanner) {
+        // Read the number of nodes
+        int N = scanner.nextInt();
+
+        // Initialize adjacency list for the tree
+        List<List<Integer>> adj = new ArrayList<>();
+        for (int i = 0; i <= N; i++) {
+            adj.add(new ArrayList<>());
+        }
+
+        // Read the edges of the tree
+        for (int i = 0; i < N - 1; i++) {
+            int u = scanner.nextInt();
+            int v = scanner.nextInt();
+            adj.get(u).add(v);
+            adj.get(v).add(u);
+        }
+
+        // Count leaf nodes
+        int leafCount = 0;
+        for (int i = 1; i <= N; i++) {
+            if (adj.get(i).size() == 1) {
+                leafCount++;
+            }
+        }
+
+        // Calculate internal count
+        int internalCount = N - leafCount;
+
+        // Calculate beauty
+        int beauty = leafCount * 3 + internalCount * 2;
+
+        // Output the beauty
+        System.out.println(beauty);
+    }
+}
