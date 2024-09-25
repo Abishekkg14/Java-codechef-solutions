@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+// Read the number of test cases
+        int T = scanner.nextInt();
+
+        while (T-- > 0) {
+// Read the values of X, Y, and Z
+            int X = scanner.nextInt();
+            int Y = scanner.nextInt();
+            int Z = scanner.nextInt();
+
+// Calculate the differences
+            int d1 = Y - X;
+            int d2 = Z - Y;
+
+// Check if already an arithmetic progression
+            if (d1 == d2) {
+                System.out.println(0);
+            } else {
+// Check if changing Y is possible
+                if ((X + Z) % 2 == 0 && (X + Z) / 2 == Y) {
+                    System.out.println(1);
+                } else {
+// Otherwise, we need at least 1 operation
+                    System.out.println(1);
+                }
+            }
+        }
+
+        scanner.close();
+    }
+}
